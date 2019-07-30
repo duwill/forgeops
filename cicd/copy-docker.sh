@@ -17,13 +17,16 @@ IMAGES="openam ds openidm openig amster util git java"
 docker login -u $DEST_USERNAME -p $DEST_APIKEY $DEST
 
 for image in $IMAGES; do
+#List and check the image in DEST with specified name and tag
     docker image ls -q $DEST/$image:$TAG &> /dev/null
-    if [ $? -ne 0 ]
+# if not found
+    if [ $? -eq 0 ]
     then
         echo "Image not found"
         docker pull $SRC/$image:$TAG 
         docker tag $SRC/$image:$TAG $DEST/$image:$TAG 
         docker push $DEST/$image:$TAG 
+# if found
     else
         echo "Image found"
     fi
