@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Copy Docker images
-          command: ../cicd/copy-docker.sh
+          command: cicd/copy-docker.sh
 workflows:
   version: 2
   test_and_push:
