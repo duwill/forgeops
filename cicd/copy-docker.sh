@@ -3,7 +3,7 @@
 
 SRC="gcr.io/engineering-devops"
 #DEST="gcr.io/forgerock-io"
-DEST="willdu.jfrog.io/willdu"
+DEST="willdu.jfrog.io"
 TAG="6.5.1"
 
 if [ -n "$1" ];
@@ -15,5 +15,6 @@ IMAGES="openam ds openidm openig amster util git java"
 for image in $IMAGES; do 
     docker pull $SRC/$image:$TAG 
     docker tag $SRC/$image:$TAG $DEST/$image:$TAG 
+    docker login $DEST
     docker push $DEST/$image:$TAG 
 done
