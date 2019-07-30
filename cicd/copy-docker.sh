@@ -21,7 +21,7 @@ for image in $IMAGES; do
     DEST_IMAGE=`docker images -q $DEST/$image:$TAG`
     echo "DEST_IMAGE: "$DEST_IMAGE
 # if not found
-    if [ $DEST_IMAGE -eq "" ]
+    if [ -z $DEST_IMAGE ]
     then
         echo "Image not found"
         docker pull $SRC/$image:$TAG 
