@@ -18,7 +18,7 @@ docker login -u $DEST_USERNAME -p $DEST_APIKEY $DEST
 
 for image in $IMAGES; do
     docker images | grep $DEST/$image:$TAG &> /dev/null
-    if [$? -ne 0]
+    if [ $? -ne 0 ]
     then
         echo "Image not found"
         docker pull $SRC/$image:$TAG 
