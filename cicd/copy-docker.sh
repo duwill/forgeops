@@ -3,7 +3,8 @@
 
 SRC="gcr.io/engineering-devops"
 #DEST="gcr.io/forgerock-io"
-DEST="willdu.jfrog.io"
+DEST="willdu-forgerock.jfrog.io"
+
 TAG="6.5.1"
 
 if [ -n "$1" ];
