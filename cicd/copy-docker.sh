@@ -14,10 +14,17 @@ if [ -n "$1" ];
 fi
 
 IMAGES="openam ds openidm openig amster util git java"
+docker login -u $DEST_USERNAME -p $DEST_APIKEY $DEST
 
-for image in $IMAGES; do 
-    docker pull $SRC/$image:$TAG 
-    docker tag $SRC/$image:$TAG $DEST/$image:$TAG 
-    docker login -u $DEST_USERNAME -p $DEST_APIKEY $DEST
-    docker push $DEST/$image:$TAG 
+for image in $IMAGES; do
+    docker images | grep $DEST/$image:$TAG &> /dev/null
+    if [$? -ne 0]
+    then
+        echo "Image not found"
+        docker pull $SRC/$image:$TAG 
+        docker tag $SRC/$image:$TAG $DEST/$image:$TAG 
+        docker push $DEST/$image:$TAG 
+    else
+        echo "Image found"
+    fi
 done
