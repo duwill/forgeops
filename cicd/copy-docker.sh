@@ -19,6 +19,7 @@ docker login -u $DEST_USERNAME -p $DEST_APIKEY $DEST
 for image in $IMAGES; do
 #List and check the image in DEST with specified name and tag
     DEST_IMAGE=`docker images -q $DEST/$image:$TAG`
+    echo "DEST_IMAGE: "$DEST_IMAGE
 # if not found
     if [ $DEST_IMAGE -eq "" ]
     then
