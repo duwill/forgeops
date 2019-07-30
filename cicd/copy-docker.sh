@@ -17,7 +17,7 @@ IMAGES="openam ds openidm openig amster util git java"
 docker login -u $DEST_USERNAME -p $DEST_APIKEY $DEST
 
 for image in $IMAGES; do
-    docker images | grep $DEST/$image:$TAG &> /dev/null
+    docker image ls -q $DEST/$image:$TAG &> /dev/null
     if [ $? -ne 0 ]
     then
         echo "Image not found"
