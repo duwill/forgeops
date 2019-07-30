@@ -2,7 +2,8 @@
 # Copy from one registry to another
 
 SRC="gcr.io/engineering-devops"
-DEST="gcr.io/forgerock-io"
+#DEST="gcr.io/forgerock-io"
+DEST="willdu.jfrog.io/willdu"
 TAG="6.5.1"
 
 if [ -n "$1" ];
