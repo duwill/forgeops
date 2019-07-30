@@ -18,9 +18,9 @@ docker login -u $DEST_USERNAME -p $DEST_APIKEY $DEST
 
 for image in $IMAGES; do
 #List and check the image in DEST with specified name and tag
-    docker image ls -q $DEST/$image:$TAG &> /dev/null
+    DEST_IMAGE=`docker images -q $DEST/$image:$TAG`
 # if not found
-    if [ $? -eq 0 ]
+    if [ $DEST_IMAGE -eq "" ]
     then
         echo "Image not found"
         docker pull $SRC/$image:$TAG 
