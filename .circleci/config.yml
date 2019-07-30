@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  copy-docker:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
@@ -12,6 +12,11 @@ jobs:
           command: cicd/copy-docker.sh
 workflows:
   version: 2
-  test_and_push:
+  build:
     jobs:
-      - build
+      - copy-docker:
+          filters:
+#            tags:
+#              only: 
+            branches:
+              only: master
