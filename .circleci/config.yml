@@ -9,7 +9,7 @@ jobs:
           docker_layer_caching: true
       - run:
           name: Copy Docker images
-          command: src/cicd/copy-docker.sh
+          command: cicd/copy-docker.sh
   build:
     docker:
       - image: circleci/openjdk:8-jdk
